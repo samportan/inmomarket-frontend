@@ -14,10 +14,10 @@ function handleRegister() {
 
 export default function Register() {
   return (
-    <div className="flex h-screen">
-      {/* Left Section: Login Form */}
-      <div className="flex flex-1 items-center justify-center bg-gray-100">
-        <Card className="w-[400px] p-6">
+    <div className="flex flex-col md:flex-row h-screen">
+      {/* Left Section: Register Form */}
+      <div className="flex flex-1 items-center justify-center bg-gray-100 p-4">
+        <Card className="w-full max-w-md p-6">
           <h2 className="text-2xl font-bold mb-4">Registrate</h2>
           <div className="space-y-4">
             <div>
@@ -56,14 +56,16 @@ export default function Register() {
       </div>
 
       {/* Right Section: Logo, Title, Info */}
-      <div className="flex flex-1 flex-col items-center justify-center bg-white">
+      <div className="flex flex-1 flex-col items-center justify-center bg-white p-4">
         <img
           src="/images/inmomarket-logo-nobg.png"
           alt="InmoMarket Logo"
-          className="w-32 h-32 mb-4"
+          className="w-24 h-24 md:w-32 md:h-32 mb-4"
         />
         <div className="text-center">
-          <p className="text-gray-600">El mejor lugar para encontrar o vender tu casa.</p>
+          <p className="text-gray-600 text-sm md:text-base">
+            El mejor lugar para encontrar o vender tu casa.
+          </p>
         </div>
       </div>
     </div>
