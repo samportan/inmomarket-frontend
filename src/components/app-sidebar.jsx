@@ -1,7 +1,6 @@
-import { Home, Inbox, Settings, Search } from "lucide-react";
+import { Home, Inbox, Settings, Search, Sun, Moon, Bell, Newspaper, Heart } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
-import { Sun, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import {
@@ -22,14 +21,19 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Notifications",
     url: "/inbox",
-    icon: Inbox,
+    icon: Bell,
   },
   {
-    title: "Search",
+    title: "Favorites",
     url: "#",
-    icon: Search,
+    icon: Heart,
+  },
+  {
+    title: "Mis avisos",
+    url: "#",
+    icon: Newspaper,
   },
   {
     title: "Settings",
