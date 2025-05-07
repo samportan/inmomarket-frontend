@@ -1,4 +1,4 @@
-import { Home, Inbox, Settings, Search, Sun, Moon, Bell, Newspaper, Heart } from "lucide-react";
+import { Home, Inbox, Settings, Search, Sun, Moon, Bell, Newspaper, Heart, User2, ChevronUp } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
@@ -12,21 +12,25 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "./ui/sidebar";
+
+import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const items = [
   {
-    title: "Home",
+    title: "Inicio",
     url: "/",
     icon: Home,
   },
   {
-    title: "Notifications",
-    url: "/inbox",
+    title: "Notificaciones",
+    url: "#",
     icon: Bell,
   },
   {
-    title: "Favorites",
+    title: "Favoritos",
     url: "#",
     icon: Heart,
   },
@@ -34,11 +38,6 @@ const items = [
     title: "Mis avisos",
     url: "#",
     icon: Newspaper,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
   },
 ];
 
@@ -66,21 +65,50 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      {/* Theme Toggle Button */}
-      <div className="p-4 border-t">
-        <Button
-          variant="ghost"
-          className="w-full justify-start gap-2"
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        >
-          {theme === "light" ? (
-            <Moon className="w-4 h-4" />
-          ) : (
-            <Sun className="w-4 h-4" />
-          )}
-          <span>Toggle Theme</span>
-        </Button>
-      </div>
+      <SidebarFooter className="py-4"> {/* Adjusted padding for more height */}
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8"> {/* Ensure avatar size fits */}
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar> 
+                  <span>Username</span>
+                  <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                className="w-[--radix-popper-anchor-width]"
+              >
+                <DropdownMenuItem>
+                  <span>Account</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                >
+                  {theme === "light" ? (
+                    <>
+                      <span>Dark Mode</span>
+                      <Moon className="w-4 h-4" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Light Mode</span>
+                      <Sun className="w-4 h-4" />
+                    </>
+                  )}
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Cerrar sesión</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
