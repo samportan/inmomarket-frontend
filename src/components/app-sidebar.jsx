@@ -1,6 +1,4 @@
-import { Home, Inbox, Settings, Search, Sun, Moon, Bell, Newspaper, Heart, User2, ChevronUp } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "./ui/button";
+import { Home, Bell, Newspaper, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import {
@@ -8,15 +6,23 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarFooter,
+  SidebarHeader,
 } from "./ui/sidebar";
 
-import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+
+import { NavUser } from "./nav-user";
+
+const data = {
+  user: {
+    name: "Samuel Portan",
+    email: "sportan@example.com",
+    avatar: "https://github.com/shadcn.png", // Replace with a valid image path
+  },
+}
 
 const items = [
   {
@@ -41,14 +47,28 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
-  const { theme, setTheme } = useTheme();
+export function AppSidebar({props}) {
 
   return (
-    <Sidebar className="flex flex-col h-full justify-between">
+    <Sidebar className="top-[--header-height] !h-[calc(100svh-var(--header-height))]" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <a href="#">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
+                  <img src="/images/inmomarket-logo-notext.png" alt="Logo" className="h-8 w-8" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">InmoMarket</span>
+                </div>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>InmoMarket</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -66,48 +86,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="py-4"> {/* Adjusted padding for more height */}
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton className="flex items-center gap-2">
-                  <Avatar className="w-8 h-8"> {/* Ensure avatar size fits */}
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar> 
-                  <span>Username</span>
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                >
-                  {theme === "light" ? (
-                    <>
-                      <span>Dark Mode</span>
-                      <Moon className="w-4 h-4" />
-                    </>
-                  ) : (
-                    <>
-                      <span>Light Mode</span>
-                      <Sun className="w-4 h-4" />
-                    </>
-                  )}
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Cerrar sesión</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
   );
