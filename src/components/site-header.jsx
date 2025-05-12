@@ -14,9 +14,11 @@ import {
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { useSidebar } from "@/components/ui/sidebar"
+import { useState } from "react"
 
 export function SiteHeader() {
   const { toggleSidebar } = useSidebar()
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // State to track login status
 
   return (
     <header className="flex sticky top-0 z-50 w-full items-center border-b bg-background">
@@ -43,7 +45,23 @@ export function SiteHeader() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <SearchForm className="w-full sm:ml-auto sm:w-auto" />
+        <SearchForm className="w-full sm:w-[300px] sm:mx-auto" />
+        {!isLoggedIn && (
+          <div className="flex gap-2 ml-auto">
+            <Button
+              variant="outline"
+              onClick={() => console.log("Login clicked")}
+            >
+              Login
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => console.log("Register clicked")}
+            >
+              Register
+            </Button>
+          </div>
+        )}
       </div>
     </header>
   )
