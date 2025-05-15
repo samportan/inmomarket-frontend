@@ -3,6 +3,7 @@
 import {
     BadgeCheck,
     Bell,
+    Settings,
     ChevronsUpDown,
     CreditCard,
     LogOut,
@@ -32,6 +33,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { useTheme } from "next-themes";
+import { Link } from "react-router-dom";
 
 export function NavUser({ user }) {
     const { isMobile } = useSidebar();
@@ -95,17 +97,15 @@ export function NavUser({ user }) {
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <BadgeCheck />
-                                Account
-                            </DropdownMenuItem>
+                            <Link to="/notifications" style={{ textDecoration: "none", color: "inherit" }}>
+                                <DropdownMenuItem as="div">
+                                    <Bell />
+                                    Notifications
+                                </DropdownMenuItem>
+                            </Link>
                             <DropdownMenuItem>
                                 <CreditCard />
                                 Billing
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Bell />
-                                Notifications
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
