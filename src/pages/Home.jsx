@@ -2,7 +2,7 @@
 
 export default function Home() {
   return (
-    <div className="space-y-12">
+    <div className="p-4 space-y-12">
       {/* Hero / Featured Carousel */}
       <section>
         {/* Carousel component */}
