@@ -12,7 +12,6 @@ export default function App() {
       {/* Public Routes - no sidebar */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/notifications" element={<NotificationsList />} />
 
       {/* Private Routes - wrapped with sidebar layout */}
       <Route element={<Layout />}>
