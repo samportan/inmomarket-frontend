@@ -18,7 +18,7 @@ import { useState } from "react"
 
 export function SiteHeader() {
   const { toggleSidebar } = useSidebar()
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(true) // State to track login status
 
   return (
     <header className="flex sticky top-0 z-50 w-full items-center border-b bg-background">
