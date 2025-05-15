@@ -3,12 +3,9 @@ import { HomeHero } from "@/components/Home/HomeHero"
 export default function Home() {
   return (
     <div className="p-4 space-y-12">
-      <HomeHero />
       <section>
-        {/* Carousel component */}
-        {/* TODO: <FeaturedCarousel /> */}
         <div className="h-[400px] bg-muted flex items-center justify-center">
-          Carousel Placeholder
+        <HomeHero/>
         </div>
       </section>
 
