@@ -32,7 +32,7 @@ const items = [
   },
   {
     title: "Notificaciones",
-    url: "#",
+    url: "/notifications",
     icon: Bell,
   },
   {
